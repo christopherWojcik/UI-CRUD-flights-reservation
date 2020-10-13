@@ -1,0 +1,44 @@
+<div class="card my-5">
+    <div class="card-body">
+        <table class="table table-dark table-bordered table-striped align-items-center table-hover">
+
+            <thead class="thead-dark ">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Airport</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Flight date</th>
+                    <th scope="col">Flight departure</th>
+                    <th scope="col">Flight arrival</th>
+                    <th scope="col">Flight aircraft</th>
+                    <th scope="col">Get ticket !!!</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let flight of flights">
+                    <td>{{ flight.dto_id}}</td>
+                    <td>{{ flight.airport }}</td>
+                    <td>{{ flight.destination }}</td>
+                    <td>{{ flight.flightDate }}</td>
+                    <td>{{ flight.flightDeparture }}</td>
+                    <td>{{ flight.flightArrival }}</td>
+                    <td>{{ flight.flightAirCraft }}</td>
+                    <td>
+                        <button (click)="reserveTicket(flight.dto_id, flight.airport,
+                            flight.destination,
+                            flight.flightDate,
+                            flight.flightDeparture,
+                            flight.flightArrival,
+                            flight.flightAirCraft)" 
+                            type="submit" 
+                            class="btn btn-outline-info" 
+                            value="Edit">Buy ticket bro !
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="card border-dark my-5">
+  <div class="card-body">
+
+    <div class="card bg-secondary my-5">
+      <div class="card-body">
+        <div class="card-title text-center text-white py-5">
+          <h2 class="">Data of chosen Aircraft:</h2>
+          <h3 class="">id - {{ currentAircraft.dto_id}},
+            number - {{ currentAircraft.aircraftNumber}},
+            capacity - {{ currentAircraft.capacity}},
+            operable status - {{ currentAircraft.operable}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #aircraftForm="ngForm">
+
+
+      <div class="form-group">
+        <label for="Id">Id</label>
+        <input type="number" [(ngModel)]="update.id" 
+        class="form-control" id="Id" name="Id"
+        placeholder="{{ currentAircraft.dto_id }}" 
+        required #Id="ngModel">
+      </div>
+      <div [hidden]="!Id.pristine" class="alert alert-warning">Aircraft number is required!</div>
+
+
+
+      <div class="form-group">
+        <label for="aircraftNumber">Aircraft number</label>
+        <input type="text" [(ngModel)]="update.aircraftNumber" class="form-control" id="aircraftNumber"
+          name="aircraftNumber" placeholder="{{ currentAircraft.aircraftNumber }}" required #aircraftNumber="ngModel">
+      </div>
+      <div [hidden]="!aircraftNumber.pristine" class="alert alert-warning">Aircraft number is required!</div>
+
+      <div class="form-group">
+        <label for="capacity">Capacity</label>
+        <input type="number" [(ngModel)]="update.capacity" class="form-control" id="capacity" name="capacity"
+          placeholder="{{ currentAircraft.capacity }}" required #capacity="ngModel">
+        <div [hidden]="!capacity.pristine" class="alert alert-warning">Capacity is required!</div>
+      </div>
+
+      <div class="form-group">
+        <label for="opearable">Operable</label>
+        <input type="checkbox" [(ngModel)]="update.operable" class="form-control" id="opearable" name="opearable"
+          placeholder="{{currentAircraft.operable}}">
+      </div>
+
+      <button type="submit" [disabled]="!aircraftForm.form.valid" class="btn btn-outline-success">Update!
+      </button>
+
+    </form>
+    
+    <br/>
+    <br/>
+
+    <button (click)="gotoAircraftList()" type="button" class="btn btn-outline-danger"> Cancel?
+    </button>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

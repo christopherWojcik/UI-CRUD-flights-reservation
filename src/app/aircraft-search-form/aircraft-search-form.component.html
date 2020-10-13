@@ -1,0 +1,91 @@
+<div class="card my-5">
+    <div class="card-body">
+
+
+      <form (ngSubmit)="onSubmit()" #aircraftSearchForm="ngForm">
+
+        <div class="form-group">
+          <label for="capacity">Aircraft capacity</label>
+          <input type="number" [(ngModel)]="aircraftSearchParam.capacity" 
+            class="form-control" 
+            id="capacity" 
+            name="capacity" 
+            placeholder="Enter capacity"
+            required #capacity="ngModel">
+        </div>
+        <div [hidden]="!capacity.pristine" class="alert alert-danger">Aircraft capacity is required!</div>
+
+        <div class="form-group">
+          <label for="operable">Operable status</label>
+          <select class="form-control" [(ngModel)]="aircraftSearchParam.operable"
+          id="operable" name="operable" 
+          placeholder="Enter operable" required #operable="ngModel">
+              <option [ngValue]="true">true</option>
+              <option [ngValue]="false">false</option>
+          </select>
+          <div [hidden]="!operable.pristine" class="alert alert-danger">Operable is required!</div>
+        </div>
+
+        <button 
+            type="submit" [disabled]="!aircraftSearchForm.form.valid" 
+            class="btn btn-info btn-lg btn-block">{{ showHideMessage }}
+        </button>
+      </form>
+
+      <div class="">
+        <br/>
+      </div>
+      
+      <div *ngIf=searchFlag class="card my-5">
+        <div class="card-body">
+        
+          <table class="table table-bordered table-striped align-items-center">
+            <thead class="thead-dark "> 
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Aircraft Number</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Operable</th>
+                <th scope="col">Edit?</th>
+                <th scope="col">Delete?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let aircraft of currentAircraftList">
+                <td>{{ aircraft.dto_id }}</td>
+                <td>{{ aircraft.aircraftNumber }}</td>
+                <td>{{ aircraft.capacity }}</td>
+                <td>{{ aircraft.operable }}</td>
+              
+                <td> 
+                  <button 
+                  (click)="gotoEditForm(
+                    aircraft.dto_id,
+                    aircraft.aircraftNumber,
+                    aircraft. capacity,
+                    aircraft.operable
+                  )"
+                  routerLink="/editaircraft"
+                  type="submit"
+                  class="btn btn-outline-warning"
+                  value="Edit">Edit
+                  </button> 
+                </td>
+    
+                <td>            
+                  <button 
+                  (click)="deleteAircraft(aircraft.dto_id)" 
+                  type="reset"
+                  class="btn btn-outline-danger">Delete
+                  </button>
+                </td>
+    
+              </tr> 
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>

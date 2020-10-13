@@ -1,0 +1,45 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #aircraftForm="ngForm">
+        <div class="form-group">
+          <label for="aircraftNumber">Aircraft number</label>
+          <input type="text" [(ngModel)]="aircraft.aircraftNumber" 
+            class="form-control" 
+            id="aircraftNumber" 
+            name="aircraftNumber" 
+            placeholder="Enter aircraft number"
+            required 
+            #aircraftNumber="ngModel">
+        </div>
+        <div [hidden]="!aircraftNumber.pristine" class="alert alert-warning">Aircraft number is required!</div>
+
+        <div class="form-group">
+          <label for="capacity">Capacity</label>
+          <input type="number" [(ngModel)]="aircraft.capacity" 
+            class="form-control" 
+            id="capacity" 
+            name="capacity" 
+            placeholder="Enter capacity"
+            required #capacity="ngModel">
+          <div [hidden]="!capacity.pristine" class="alert alert-warning">Capacity is required!</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="opearable">Operable</label>
+          <input type="checkbox" [(ngModel)]="aircraft.operable" 
+            class="form-control" 
+            id="opearable" 
+            name="opearable" 
+            placeholder="Select if aircraft is operble.">
+        </div>
+
+        <button 
+            type="submit" [disabled]="!aircraftForm.form.valid" 
+            class="btn btn-info">Submit!
+        </button>
+
+      </form>
+
+
+    </div>
+  </div>

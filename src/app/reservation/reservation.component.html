@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card bg-dark my-5">
+      <div class="card-body">
+        <div class="card-title text-center text-white py-5">
+          <h2 class="">Data of chosen Flight:</h2>
+          <h3 class=""><code>id</code> - {{ currentFLight.dto_id}},<br />
+            <code>departure airport</code> - {{ currentFLight.airport}},<br />
+            <code>destination airport</code> - {{ currentFLight.destination}},<br />
+            <code>flight date</code> - {{ currentFLight.flightDate}},<br />
+            <code>departure date</code> - {{ currentFLight.flightDeparture}},<br />
+            <code>arrival date</code> - {{ currentFLight.flightArrival}},<br />
+            <code>aircraft number</code> - {{ currentFLight.flightAirCraft}}<br />
+          </h3>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card dark border-dark my-5">
+      <div class="card-body">
+
+
+        <form (ngSubmit)="onSubmit()" #reservationForm="ngForm">
+
+          <div class="form-group">
+            <label for="email">Please enter Your email address. Payment data will be sent on it &#9786;</label>
+            <input type="text" [(ngModel)]="reservation.email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            placeholder="Email ..." 
+            required 
+            #email="ngModel">
+          </div>
+          <div [hidden]="!email.pristine" class="alert alert-info">Email is required! Nowadays everyone has email :)
+          </div>
+
+          <button type="submit" [disabled]="!reservationForm.form.valid" class="btn btn-info">Confirm and send
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

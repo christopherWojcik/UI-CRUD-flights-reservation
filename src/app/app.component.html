@@ -1,0 +1,34 @@
+<div class="bg">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-dark my-5">
+          <div class="card-body justify-content-center">
+            <button routerLink="/" class="btn btn-outline-danger btn-lg btn-block">{{ title }}</button>
+            <ul class="text-center list-inline py-3">
+              <li class="list-inline-item">
+                <a routerLink="/aircrafts" class="btn btn-outline-primary">Aircraft List</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/addaircraft" class="btn btn-outline-primary">Add Aircraft</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/searchaircrafts" class="btn btn-outline-primary">Search for Aircrafts</a>
+              </li>
+            </ul>
+            <ul class="text-center list-inline py-3">
+              <li class="list-inline-item">
+                <a routerLink="/flightsearch" class="btn btn-outline-warning">Search for flights!</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,51 @@
+<div class="card border-dark my-5">
+  <div class="card-body">
+
+    <table class="table table-dark table-striped align-items-center table-hover">
+      <thead class="thead-dark ">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Aircraft Number</th>
+          <th scope="col">Capacity</th>
+          <th scope="col">Operable</th>
+          <th scope="col">Flight List</th>
+          <th scope="col">Edit?</th>
+          <th scope="col">Delete?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aircraft of aircrafts">
+          <td>{{ aircraft.dto_id }}</td>
+          <td>{{ aircraft.aircraftNumber }}</td>
+          <td>{{ aircraft.capacity }}</td>
+          <td>{{ aircraft.operable }}</td>
+
+          <td>
+            <button (click)="submitCurrentFlight(aircraft.dto_id,
+            aircraft.aircraftNumber,
+            aircraft.capacity,
+            aircraft.operable)" routerLink="/flights" type="button" class="btn btn-outline-success" value="Edit">Show flight List
+            </button>
+          </td>
+
+          <td>
+            <button (click)="submitCurrentFlight(
+                aircraft.dto_id,
+                aircraft.aircraftNumber,
+                aircraft.capacity,
+                aircraft.operable
+              )" type="submit" routerLink="/editaircraft" class="btn btn-outline-warning" value="Edit">Edit
+            </button>
+          </td>
+
+          <td>
+            <button (click)="deleteAircraft(aircraft.dto_id)" type="reset" class="btn btn-outline-danger">Delete
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="card border-dark my-5">
+  <div class="card-body">
+
+    <form (ngSubmit)="onSubmit()" #flightSearchForm="ngForm">
+
+      <div class="form-group">
+
+        <label for="airport">Airport</label>
+        <select class="form-control" [(ngModel)]="flightSearch.airport" 
+                id="airport" 
+                name="airport" 
+                required
+                (ngModelChange)="getDestinations($event)"
+                #airport="ngModel">
+          <option *ngFor="let airport of airports" [ngValue]="airport">{{ airport }}</option>
+        </select>
+
+        <div [hidden]="!airport.pristine" class="alert alert-danger">Airport is required!</div>
+
+        <label for="destination">Destination</label>
+        <select class="form-control" [(ngModel)]="flightSearch.destination" 
+                id="destination" 
+                name="destination"  
+                #destination="ngModel">
+          <option *ngFor="let destination of destinations" [ngValue]="destination">{{ destination }}</option>
+        </select>
+        <div [hidden]="!destination.pristine" class="alert alert-info" role="alert">
+          <h4 class="alert-heading"><b>Significant information !!!</b></h4>
+          <p class=""><code>Destinations List</code> source is databse (<code>MySQL</code>). Currently in this app, we have 14 routes, 
+            repeated one day apart. After choosing the starting airport, all the magic happens underneath - <code>in the backend</code> - and we can only choose the airports available for the chosen departure airport.</p> 
+            <p class=""></p>
+            <hr>
+            <p class="mb-0">Plane starts from <b><i>Gdańsk</i></b></p>
+            <p class="">Then goes to: &#8594; Wroclaw &#8594; Warsaw &#8594; Gdansk &#8594; Warsaw &#8594; Gdansk &#8594; Miami &#8594; Gdansk &#8594; Radom &#8594; Gdansk &#8594; Ibiza &#8594; Gdansk &#8594; Szczecin &#8594; Frankfurt &#8594; finally ends in Gdansk.</p>
+        </div>
+
+      </div>
+
+      <button type="submit" [disabled]="!flightSearchForm.form.valid" class="btn btn-outline-success btn-lg btn-block">
+        {{ showHideMessage }}
+      </button>
+
+    </form>
+
+    <div *ngIf=searchFlag class="card my-5">
+      <div class="card-body">
+      
+        <table class="table table-dark table-bordered table-striped align-items-center table-hover">
+          <thead class="thead-dark ">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Airport</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Flight date</th>
+              <th scope="col">Flight departure</th>
+              <th scope="col">Flight arrival</th>
+              <th scope="col">Flight aircraft</th>
+              <th scope="col">Get ticket !!!</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flight of flights">
+              <td>{{ flight.dto_id}}</td>
+              <td>{{ flight.airport }}</td>
+              <td>{{ flight.destination }}</td>
+              <td>{{ flight.flightDate }}</td>
+              <td>{{ flight.flightDeparture }}</td>
+              <td>{{ flight.flightArrival }}</td>
+              <td>{{ flight.flightAirCraft }}</td>
+              <td>
+                <button 
+                (click)="reserveTicket(
+                  flight.dto_id,
+                  flight.airport,
+                  flight.destination,
+                  flight.flightDate,
+                  flight.flightDeparture,
+                  flight.flightArrival,
+                  flight.flightAirCraft
+                )"
+                routerLink="/editaircraft"
+                type="submit"
+                class="btn btn-outline-info"
+                value="Edit">Buy ticket bro !
+                </button> 
+              </td>
+            </tr> 
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+
+  </div>
+</div>
