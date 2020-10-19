@@ -61,6 +61,8 @@ export class AircraftSearchFormComponent {
           this.aircraftService.findAll().subscribe(data => { })
         },
         error => console.log(error));
+
+    setTimeout(() => {this.router.navigate(['/aircrafts'])}, 2000);    
   }
 
 

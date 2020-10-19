@@ -21,7 +21,9 @@
         <input type="number" [(ngModel)]="update.id" 
         class="form-control" id="Id" name="Id"
         placeholder="{{ currentAircraft.dto_id }}" 
-        required #Id="ngModel">
+        value="{{ currentAircraft.dto_id }}" 
+        readonly
+        #Id="ngModel">
       </div>
       <div [hidden]="!Id.pristine" class="alert alert-warning">Aircraft number is required!</div>
 
